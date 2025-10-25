@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LiKiTi — мобильная версия</title>
+  <style>
+    :root {
+      --bg: #151414;
+      --card: #202020;
+      --accent: #f8d13b;
+      --text: #e0e0e0;
+    }
+
+    @font-face {
+      font-family: 'Oswald';
+      src: url('Fonts/Oswald/Oswald.woff') format('woff');
+    }
+    @font-face {
+      font-family: 'Montserrat';
+      src: url('Fonts/Montserrat/Montserrat-Medium.woff') format('woff');
+    }
+     @font-face {
+    font-family: 'SFUIDisplay-Medium';
+    src: url('Fonts/SFUIDisplay-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+ }
+ @font-face {
+    font-family: 'SFUIDisplay-Regular';
+    src: url('Fonts/SFUIDisplay-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+ }
+ @font-face {
+    font-family: 'Montserrat-Bold';
+    src: url('Fonts/Montserrat/Montserrat-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+ }
+ @font-face {
+    font-family: 'Montserrat-SemiBold';
+    src: url('Fonts/Montserrat/Montserrat-SemiBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+ }
+
+    body {
+      margin: 0;
+      font-family: 'Oswald', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* === ШАПКА === */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--card);
+      padding: 12px 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    header .btn-accent {
+  order: 0; /* чтобы центральная кнопка шла между логотипом и меню */
+  margin: 0 auto; /* выравнивание по центру */
+  padding: 6px 14px;
+  font-size: 13px;
+  border-radius: 18px;
+  color: whitesmoke;
+  background: transparent;
+  border: 2px solid whitesmoke;
+}
+.btn-accent:active {
+  background-color: whitesmoke;      /* цвет при нажатии */
+  color: var(--card);           /* текст становится тёмным */
+  transform: scale(0.98);       /* немного уменьшаем размер */
+  transition: transform 0.1s, background-color 0.1s, color 0.1s; /* плавный эффект */
+}
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      color: white;
+    }
+
+    .btn-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 110; /* чтобы была над меню */
+}
+
+.btn-menu .bar {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: whitesmoke; /* красные полоски */
+  border-radius: 2px;
+  transition: all 0.4s ease; /* плавная анимация */
+}
+
+/* Анимация при открытом меню */
+.btn-menu.active .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.btn-menu.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.btn-menu.active .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+    /* Надёжный стиль и эффект нажатия для .btn-accent */
+.btn-accent {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 18px;
+  background: var(--accent);
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 14px;
+  transition: transform 120ms cubic-bezier(.2,.9,.3,1), background-color 150ms ease, color 150ms ease;
+  -webkit-tap-highlight-color: transparent;
+  will-change: transform, background-color;
+}
+
+/* класс, который ставит JS при нажатии */
+.btn-accent.pressed {
+  transform: scale(0.98);
+  background-color: whitesmoke;
+  color: var(--card);
+  outline: none;
+}
+/* Удалите или закомментируйте это */
+.btn-accent:active {
+  background-color: whitesmoke;
+  color: var(--card);
+  transform: scale(0.98);
+  transition: transform 0.1s, background-color 0.1s, color 0.1s;
+}
+
+
+    /* === ПРЕИМУЩЕСТВА === */
+    .advantages {
+      padding: 30px 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .adv-card {
+      background: var(--card);
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      text-align: center;
+    }
+
+    .adv-card h3 {
+      color: var(--accent);
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .adv-card p {
+      font-size: 14px;
+      color: #ccc;
+      margin: 0;
+    }
+
+    /* === ИСТОРИЯ / ОПИСАНИЕ === */
+    .history {
+      background-color: #1c1c1c;
+      color: #e0e0e0;
+      padding: 30px 20px;
+      text-align: justify;
+      position: relative ;
+      z-index: 2;         /* выше соседнего фото-блока */
+  box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+      
+    }
+
+    .history h2 {
+      text-align: center;
+      color: var(--accent);
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 40px;
+    }
+
+    .history p {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    /* === ФОРМА ЗАЯВКИ === */
+    .request {
+      background: url("photos/trest/11.jpeg") center/cover no-repeat;
+      color: whitesmoke;
+      padding: 20px;
+      overflow: hidden;
+      text-align: center;
+      position: relative;
+    }
+
+    .request::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(3px);
+  z-index: 1;
+}
+
+    .request h2 {
+      position: relative;
+      font-size: 35px;
+      color: var(--accent);
+      margin-top: 0px;
+      margin-bottom: 10px;
+      z-index: 2;
+    }
+
+    .request p {
+      position: relative;
+      font-size: 20px;
+      margin-bottom: 25px;
+      z-index: 2;
+    }
+
+    form {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: none;
+      border-radius: 6px;
+      background-color: rgba(42, 42, 42, 0.901);
+      color: whitesmoke;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    input:focus, textarea:focus {
+      outline: 2px solid var(--accent);
+    }
+
+    /* Кнопка — внешний контейнер (не масштабируем) */
+.btn-submit {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: whitesmoke;
+  border-radius: 25px;
+  padding: 10px;
+  font-weight: bold;
+  width: 98%;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.1s ease, color 0.1s ease, border-color 0.1s ease;
+  -webkit-tap-highlight-color: transparent;
+  contain: paint;
+}
+
+.btn-submit .btn-inner {
+  display: inline-block;
+  transition: transform 300ms ease;
+  will-change: transform;
+  transform-origin: center center;
+}
+
+.btn-submit.pressed .btn-inner {
+  transform: scale(0.99);
+}
+
+.btn-submit.pressed {
+  background-color: whitesmoke;
+  color: var(--card);
+  border-color: whitesmoke; /* вместо border: none */
+}
+
+
+
+    /* === ПОДВАЛ === */
+    footer {
+      background-color: #202020;
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+      color: #aaa;
+      position: relative ;
+      z-index: 2;         /* выше соседнего фото-блока */
+  box-shadow: 0 -10px 20px rgba(0,0,0,0.5);
+    }
+.mobile-menu{
+  position: absolute;
+  top: 100%;        
+  left: 0;
+  width: 100%;
+  background-color: #202020;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s cubic-bezier(.2,.9,.3,1);
+box-shadow: 0 6px 12px -6px rgba(0, 0, 0, 0.45);
+padding-bottom: 15px;
+}
+
+.mobile-menu.active{
+  transform: scaleY(1);
+}
+
+
+
+.mobile-menu a {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  text-align: center;
+  font-size: 17px;
+  color: whitesmoke;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* задержка для каждого пункта */
+.mobile-menu.active a:nth-child(1) { transition-delay: 0.1s; }
+.mobile-menu.active a:nth-child(2) { transition-delay: 0.2s; }
+.mobile-menu.active a:nth-child(3) { transition-delay: 0.3s; }
+
+/* активное состояние — пункты видны */
+.mobile-menu.active a {
+  opacity: 1;
+  transform: translateY(0);
+}
+.mobile-menu a:hover,
+.mobile-menu a:focus{
+  background-color: #2a2a2a;
+  color: var(--accent);
+  outline: none;
+}
+
+
+.photo-block {
+  background: url("photos/3.jpeg") center/cover no-repeat;
+  height: 300px; /* можно менять под нужный размер */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: whitesmoke;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.6); /* тень под фото */
+}
+
+.photo-block::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.photo-block h2,
+.photo-block p {
+  position: relative; /* чтобы текст был поверх затемнения */
+  margin: 0;
+}
+
+.photo-block h2 {
+  font-size: 20px;
+}
+
+.photo-block p {
+  font-size: 15px;
+}
+.side-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 180px; /* ширина панели */
+  height: 100%; /* высота совпадает с фото-блоком */
+  background: rgba(42, 42, 42, 0.556); /* прозрачный фон */
+  backdrop-filter: blur(8px); /* размытие фона под панелью */
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* вертикальный промежуток между h3 и p */
+  color: whitesmoke;
+  padding-left: 20px;
+  padding-top: 10px; /* при необходимости отступ сверху */
+  color: whitesmoke;
+  box-shadow: -8px 0 12px -6px rgba(0, 0, 0, 0.6);
+  text-align: left; /* выравнивание текста по левому краю */
+}
+
+.side-panel h3 {
+ margin: 0 0 22px 0; 
+  font-size: 18px;
+}
+
+.side-panel p {
+  margin: 0;
+  font-size: 12px;
+  font-family: 'Montserrat-SemiBold';
+}
+.photo-info {
+  background-color: #2b2b2b; /* тёмно-серый блок под фото */
+  color: #e0e0e0;
+  padding: 15px;
+  text-align: left;
+  margin-top: -15px; /* чтобы визуально примыкал к фото */
+}
+
+.photo-info p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.form-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: left;
+}
+.form-checkboxes label span {
+  text-align: left; /* текст внутри будет по левому краю */
+}
+.form-checkboxes label {
+  font-size: 12px;
+  color: #f5f5f5;
+  display: flex;
+  align-items: left;
+  gap: 10px;
+  cursor: pointer;
+}
+
+
+.form-checkboxes input[type="checkbox"] {
+  width: 13px;
+  height: 13px;
+  accent-color: #007AFF; /* цвет галочки */
+  cursor: pointer;
+}
+.request {
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  isolation: isolate; /* изолирует от кнопочных трансформаций */
+  will-change: none;
+}
+html {
+  scroll-behavior: smooth;
+}
+.logo-link {
+  color: white;           /* цвет текста */
+  text-decoration: none;  /* убираем подчеркивание */
+  font-family: 'Oswald', sans-serif; /* сохраняем шрифт логотипа */
+}
+#history {
+  scroll-margin-top: 80px; /* высота header + небольшой запас */
+}
+#tech {
+  scroll-margin-top: 80px; /* высота header + небольшой запас */
+}
+.photo-block {
+  margin-bottom: 10px; /* расстояние до info блока */
+}
+
+.photo-info {
+  margin-bottom: 15px; /* расстояние до следующего photo-block */
+}
+.site-footer {
+  background-color: #202020;  /* тёмный фон */
+  color: #e0e0e0;            /* светлый текст */
+  padding: 20px 0px;
+}
+
+.footer-container {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between; /* колонки слева и справа */
+  flex-wrap: wrap;                /* чтобы адаптивно переносилось на маленьких экранах */
+  gap:10px;
+}
+
+.footer-left, .footer-right {
+  flex: 1 1 300px;  /* минимум 300px, растягивается по возможности */
+}
+
+.footer-left h3, .footer-right h3 {
+  color: #f8d13b;   /* акцентный цвет заголовка */
+  margin-bottom: 10px;
+}
+
+.footer-left p, .footer-right p {
+  margin: 5px 0;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+#request {
+  scroll-margin-top: 80px; /* высота header + небольшой запас */
+}
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1><a href="#history" class="logo-link">LiKiTi</a></h1>
+    <a href="#request" class="btn-accent" style="margin:0 auto;">Оставить заявку</a>
+   <button class="btn-menu" id="openMenu" aria-label="Открыть меню">
+  <span class="bar"></span>
+  <span class="bar"></span>
+  <span class="bar"></span>
+</button>
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="#tech">Техника</a>
+  <a href="#history">О кмпании</a>
+  <a href="objects-mobile.html">Наши объекты</a>
+  <a href="tel:+375298902167" class="phone-link">+375 (29) 890-21-67</a>
+</nav>
+  </header>
+<section class="photo-block" style="background-image: url('photos/3.jpeg');" id="tech">
+  <div class="side-panel">
+    <h2 style="font-family:'Montserrat-Bold'; font-size:20px;">Экскаватор-погрузчик</h2>
+     <p style="font-family:'Montserrat-Bold'; font-size:15px; color: #f9d750;">От 90 руб/час + НДС 20% (мин. заказ от 4ч)</p>
+    <p>Доставка на объект (рассчитывается индивидуально)</p>
+    <p>Гидромолот и гидробур диаметром 300 мм и глубиной 2 м</p>
+  </div>
+</section>
+<div class="photo-info">
+  <p>
+   Универсальная техника для копки, погрузки и перевозки материалов. 
+   Манёвренный, мощный и экономичный — заменяет сразу несколько машин.
+  </p>
+</div>
+<section class="photo-block" style="background-image: url('photos/17.jpeg');">
+  <div class="side-panel">
+    <h2 style="font-family:'Montserrat-Bold'; font-size:20px;">Мини-экскаватор</h2>
+     <p style="font-family:'Montserrat-Bold'; font-size:15px; color: #f9d750;">От 75 руб/час + НДС 20% (мин. заказ от 4ч)</p>
+    <p>Доставка на объект (рассчитывается индивидуально)</p>
+    <p>Гидромолот и гидробур диаметром 300 мм и глубиной 2 м</p>
+  </div>
+</section>
+<div class="photo-info">
+  <p>
+    компактный и точный, работает в стеснённых условиях.
+    Идеален для частных и коммунальных работ, экономит время и топливо.
+  </p>
+</div>
+<section class="photo-block" style="background-image: url('photos/samosval.jpeg');">
+  <div class="side-panel">
+    <h2 style="font-family:'Montserrat-Bold'; font-size:20px;">Самосвал</h2>
+     <p style="font-family:'Montserrat-Bold'; font-size:15px; color: #f9d750;">Цена расчитывается индивидуально</p>
+    <p style="font-size:15px;">Грузоподъёмность 31 тонна</p>
+    <p style="font-size:15px;">Максимальная масса 50 тонн</p>
+  </div>
+</section>
+<div class="photo-info">
+  <p>
+    Надёжный транспорт для сыпучих материалов. 
+    Быстрая доставка, высокая грузоподъёмность и отличная проходимость.
+  </p>
+</div>
+
+  <section class="advantages">
+    <div class="adv-card">
+      <h3>Надёжность</h3>
+      <p>Только исправные и обслуживаемые машины, готовые к работе без простоев.</p>
+    </div>
+    <div class="adv-card">
+      <h3>Опыт и Ответственность</h3>
+      <p>Наши водители обладают опытом работы более 10 лет, подходят к работе ответственно и выполняют ее качественно</p>
+    </div>
+    <div class="adv-card">
+      <h3>Гибкие условия</h3>
+      <p>Подбираем технику под любую задачу и срок, с прозрачными тарифами.</p>
+    </div>
+  </section>
+
+  <section class="history" id="history">
+    <h2>LiKiTi</h2>
+  <p>
+    Наша компания — надёжный лидер в аренде строительной техники. Мы предоставляем экскаваторы, погрузчики и самосвалы для строительных, коммунальных и промышленных проектов. Уже более 3 лет мы помогаем клиентам выполнять задачи быстро, эффективно и без лишних забот.
+Исправная техника, гибкие условия аренды и индивидуальный подход делают работу с нами удобной и безопасной. Каждая машина готова к работе, что обеспечивает максимальную продуктивность на объекте.
+На нашем счету числится работа в таких крупных организациях как Туркомплекс "Красный бор", ОАО "Нафтан", ОАО "дорстроймонтажтрест", ОАО "Трест16" и ОАО "дорожно-строительный трест №1" и другие организации.
+Мы постоянно развиваемся и расширяем автопарк, чтобы клиенты получали надёжного партнёра для любых задач — от небольших проектов до крупных строительных объектов. С нами аренда техники становится простой, быстрой и уверенной.</section>
+
+  <section id="request" class="request">
+    <h2>Заинтересовало наше предложение ?</h2>
+    <p>Оставте заявку и мы свяжемся с вами в течении часа !</p>
+    <form action="zayavka.html">
+  <input type="text" placeholder="Введите ваше имя" required />
+  <input type="tel" placeholder="Введите номер телефона" required />
+  <input type="email" placeholder="Введите email" required />
+  <textarea placeholder="Комментарий"></textarea>
+
+  <div class="form-checkboxes">
+    <label>
+      <input type="checkbox" name="agreement1" required>
+      <span>Я даю согласие на обработку моих персональных данных</span>
+    </label>
+    <label>
+      <input type="checkbox" name="agreement2" required>
+      <span>Ознакомился с политикой конфиденциальности</span>
+    </label>
+  </div>
+
+  <button type="submit" class="btn-submit">
+    <span class="btn-inner">Получить специальное предложение!</span>
+  </button>
+</form>
+
+  </section>
+
+  <footer class="site-footer">
+  <div class="footer-container">
+    <!-- Левая колонка -->
+    <div class="footer-left">
+      <h3 style="font-size:20px;">О компании</h3>
+      <p>ООО "ЛиКиТи Инвест строй"</p>
+      <p>УНП 391969985</p>
+    </div>
+    
+    <!-- Правая колонка -->
+    <div class="footer-right">
+      <h3 style="font-size:20px;">Контакты</h3>
+      <p>Телефон: <a href="tel:+375338902167" style="color: #f9d853; text-decoration: none;">+375 (33) 890-21-67</a></p>
+      <p>Email: likitiinvest@mail.ru</p>
+      <p>Адрес: г. Полоцк, ул. Гагарина, 36 Б, оф. 3</p>
+    </div>
+  <div style="flex-basis:100%; text-align:center; margin-top:15px; color:#aaa;">
+    <p>© 2025 LiKiTi. Все права защищены.</p>
+    <p>Designed and assembled by ...</p>
+  </div>
+</div>
+</footer>
+
+<script>
+(function(){
+  const openBtn = document.getElementById('openMenu');
+  const menu = document.getElementById('mobileMenu');
+  const header = document.querySelector('header');
+  if (!openBtn || !menu || !header) return;
+
+  function adjustTop(){
+    const h = Math.ceil(header.getBoundingClientRect().height);
+    menu.style.top = h + 'px';
+  }
+  adjustTop();
+  window.addEventListener('resize', adjustTop);
+
+  function toggleMenu(open) {
+    if (open) {
+      menu.classList.add('active');
+      openBtn.classList.add('active');
+      menu.querySelectorAll('a').forEach((a, index) => {
+        a.style.transitionDelay = `${0.1 + index*0.1}s`;
+        a.style.opacity = '1';
+        a.style.transform = 'translateY(0)';
+      });
+    } else {
+      menu.classList.remove('active');
+      openBtn.classList.remove('active');
+      menu.querySelectorAll('a').forEach((a) => {
+        a.style.transitionDelay = '0s';
+        a.style.opacity = '0';
+        a.style.transform = 'translateY(-20px)';
+      });
+    }
+  }
+
+  openBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleMenu(!menu.classList.contains('active'));
+  });
+
+  menu.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => toggleMenu(false))
+  );
+
+  document.addEventListener('click', (e) => {
+    if (menu.classList.contains('active') && !menu.contains(e.target) && !openBtn.contains(e.target)) {
+      toggleMenu(false);
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') toggleMenu(false);
+  });
+
+  window.addEventListener('scroll', () => {
+    if (menu.classList.contains('active')) toggleMenu(false);
+  });
+document.addEventListener('touchstart', function(){}, true);
+(function(){
+  const selector = '.btn-submit';
+
+  function onDown(e){
+    const btn = e.target.closest(selector);
+    if (!btn) return;
+    btn.classList.add('pressed');
+  }
+
+  function onUp(){
+    // снимаем класс со всех на случай, если что-то пошло не так
+    document.querySelectorAll(selector + '.pressed').forEach(b => b.classList.remove('pressed'));
+  }
+
+  // Универсальные события: pointer покрывает mouse+touch+pen
+  document.addEventListener('pointerdown', onDown);
+  document.addEventListener('pointerup', onUp);
+  document.addEventListener('pointercancel', onUp);
+  document.addEventListener('pointerleave', onUp);
+
+  // Доп. fallback для старых браузеров (safari/android)
+  document.addEventListener('touchend', onUp, {passive: true});
+  document.addEventListener('touchcancel', onUp, {passive: true});
+})();
+(function(){
+  // включаем поддержку :active-поведения на старых iOS/Android
+  document.addEventListener('touchstart', function(){}, true);
+
+  const selector = '.btn-accent';
+
+  function addPressed(e){
+    const el = e.target.closest(selector);
+    if (!el) return;
+    el.classList.add('pressed');
+  }
+
+  function clearPressed(){
+    document.querySelectorAll(selector + '.pressed')
+      .forEach(el => el.classList.remove('pressed'));
+  }
+
+  // pointer покрывает mouse+touch+pen
+  document.addEventListener('pointerdown', addPressed);
+  document.addEventListener('pointerup', clearPressed);
+  document.addEventListener('pointercancel', clearPressed);
+  document.addEventListener('pointerleave', clearPressed);
+
+  // дополнительные гарантии для мобильных
+  document.addEventListener('touchend', clearPressed, {passive: true});
+  document.addEventListener('touchcancel', clearPressed, {passive: true});
+  // и на клик (быстрая страховка)
+  document.addEventListener('click', clearPressed);
+})();
+
+})();
+
+document.querySelector("form").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+    var formData = new FormData(this);
+  var name = formData.get("name");
+  var phone = formData.get("phone");
+  var email = formData.get("email");
+  var message = formData.get("message");
+
+  var text = `Новая заявка:\n\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${email}\nСообщение: ${message}`;
+
+  fetch('/.netlify/functions/send-message', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name: name,
+      phone: phone,
+      email: email,
+      message: message
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.message === "Заявка отправлена!") {
+      window.location.href = "zayavka.html"; // Перенаправление на страницу
+    } else {
+      alert("Ошибка отправки заявки.");
+    }
+  })
+  .catch(error => {
+    alert("Ошибка отправки заявки.");
+    console.error(error);
+  });
+});
+</script>
+
+</body>
+</html>
