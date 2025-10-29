@@ -402,7 +402,7 @@
 .request-section {
   position: relative;
   z-index: 1;
-  background-image: url("photos/3.jpeg");
+  background-image: url("https://res.cloudinary.com/doesdthrd/image/upload/f_auto,q_auto/v1761774624/3_o6gj7y.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
