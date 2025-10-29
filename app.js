@@ -141,7 +141,7 @@ document.querySelector("form").addEventListener("submit", function(e) {
 
   fetch('/.netlify/functions/send-message', {
     method: 'POST',
-    headers: {
+    headers: {  
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
