@@ -1,0 +1,55 @@
+
+User-agent: *
+# Разрешаем обход всех страниц
+Allow: /
+
+# Запрещаем несуществующие и служебные директории
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /admin/
+Disallow: /test/
+Disallow: /backup/
+
+# Запрещаем индексировать файлы, не относящиеся к контенту
+Disallow: /*.php$
+Disallow: /*.inc$
+Disallow: /*.txt$
+Disallow: /*.md$
+Disallow: /*.json$
+Disallow: /*.config$
+
+# Указываем основное зеркало (важно для Яндекса)
+Host: likiti.by
+
+# Подключаем карту сайта (ускоряет переобход)
+Sitemap: https://likiti.by/sitemap.xml
+
+# Игнорируем параметры, не влияющие на контент
+Clean-param: sessionid
+Clean-param: ref
+
+# ----------------------------------------
+# Отдельные правила для поисковых систем
+# ----------------------------------------
+
+# Googlebot
+User-agent: Googlebot
+Allow: /
+Disallow: /test/
+
+# Yandex
+User-agent: Yandex
+Allow: /
+Disallow: /test/
+# Crawl-delay убран, чтобы робот индексировал чаще
+
+# Bingbot
+User-agent: Bingbot
+Allow: /
+Disallow: /test/
+
+# DuckDuckBot
+User-agent: DuckDuckBot
+Allow: /
+Disallow: /test/
+
