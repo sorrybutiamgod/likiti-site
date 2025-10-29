@@ -99,7 +99,7 @@
   margin-top: 80px;
   width: 100%;
   height: 600px;
-  background-image: url("https://res.cloudinary.com/doesdthrd/image/upload/w_1350,h_600,f_auto,q_auto/v1761777591/jpeg-optimizer_3_ke4xrf.jpg");
+  background-image: url("https://res.cloudinary.com/doesdthrd/image/upload/w_2500,h_1111,f_auto,q_auto/v1761777591/jpeg-optimizer_3_ke4xrf.jpg");
   background-size: cover;
   background-position: center;
   position: relative; /* нужно для абсолютного позиционирования overlay */
@@ -233,7 +233,7 @@
   margin-top: 20px;
   width: 100%;
   height: 650px;
-  background-image: url("https://res.cloudinary.com/doesdthrd/image/upload/w_1350,h_600,f_auto,q_auto/v1761777598/jpeg-optimizer_17_xfk3w6.jpg");
+  background-image: url("https://res.cloudinary.com/doesdthrd/image/upload/w_2500,h_1111,f_auto,q_auto/v1761777598/jpeg-optimizer_17_xfk3w6.jpg");
   background-size: cover;
   background-position: center;
   position: relative; /* нужно для абсолютного позиционирования overlay */
@@ -259,7 +259,7 @@
   margin-top: 60px;
   width: 100%;
   height: 600px;
-  background-image: url("https://res.cloudinary.com/doesdthrd/image/upload/w_1350,h_600,f_auto,q_auto/v1761777599/jpeg-optimizer_samosval_hgj6gu.jpg");
+  background-image: url("https://res.cloudinary.com/doesdthrd/image/upload/w_2500,h_1111,f_auto,q_auto/v1761777599/jpeg-optimizer_samosval_hgj6gu.jpg");
   background-size: cover;
   background-position: center;
   position: relative; /* нужно для абсолютного позиционирования overlay */
@@ -402,7 +402,7 @@
 .request-section {
   position: relative;
   z-index: 1;
-  background-image: url("https://res.cloudinary.com/doesdthrd/image/upload/w_1350,h_600,f_auto,q_auto/v1761777591/jpeg-optimizer_3_ke4xrf.jpg");
+  background-image: url("https://res.cloudinary.com/doesdthrd/image/upload/w_2500,h_1111,f_auto,q_auto/v1761777591/jpeg-optimizer_3_ke4xrf.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
