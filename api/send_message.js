@@ -1,4 +1,4 @@
-// netlify/functions/send-message.js
+// api/send-message.js
 const fetch = require('node-fetch');  // Подключаем node-fetch
 
 exports.handler = async function(event, context) {
