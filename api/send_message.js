@@ -1,16 +1,34 @@
-// api/send-message.js
 const fetch = require('node-fetch');  // Подключаем node-fetch
 
-exports.handler = async function(event, context) {
-  const body = JSON.parse(event.body);  // Получаем данные из тела запроса
-  const { name, phone, email, message } = body;
+// Экспортируем асинхронную функцию
+module.exports = async (req, res) => {
+  // Проверяем, что метод запроса - POST
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: 'Метод не разрешен' }); // Ошибка 405 для некорректных методов
+  }
 
+  // Получаем данные из тела запроса
+  const { name, phone, email, message } = req.body;
+
+  // Проверяем, что все обязательные поля присутствуют
+  if (!name || !phone || !email || !message) {
+    return res.status(400).json({ message: 'Все поля должны быть заполнены' }); // Ошибка 400 для неполных данных
+  }
+
+  // Формируем текст для отправки в Telegram
   const telegramText = `Новая заявка:\n\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${email}\nСообщение: ${message}`;
 
-  const botToken = process.env.TELEGRAM_BOT_TOKEN;  // Получаем токен из переменной окружения
-  const chatId = process.env.TELEGRAM_CHAT_ID;  // Получаем chat_id из переменной окружения
+  // Получаем токен бота и chat_id из переменных окружения
+  const botToken = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+
+  // Проверяем, что переменные окружения настроены
+  if (!botToken || !chatId) {
+    return res.status(500).json({ message: 'Не настроены переменные окружения' }); // Ошибка 500 для неправильных настроек
+  }
 
   try {
+    // Отправляем запрос в Telegram API
     const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -22,22 +40,16 @@ exports.handler = async function(event, context) {
 
     const data = await response.json();
 
+    // Проверяем, успешно ли отправлено сообщение
     if (data.ok) {
-      return {
-        statusCode: 200,
-        body: JSON.stringify({ message: 'Заявка отправлена!' })
-      };
+      return res.status(200).json({ message: 'Заявка отправлена!' }); // Успешный ответ
     }
 
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ message: 'Ошибка отправки заявки.' })
-    };
+    return res.status(500).json({ message: 'Ошибка отправки заявки.' }); // Ошибка при отправке сообщения в Telegram
 
   } catch (error) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ message: 'Ошибка при обработке заявки.' })
-    };
+    // Обработка ошибок, если что-то пошло не так
+    console.error('Ошибка при отправке сообщения:', error);
+    return res.status(500).json({ message: 'Ошибка при обработке заявки.' }); // Ошибка 500
   }
 };
