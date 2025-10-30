@@ -139,7 +139,7 @@ document.querySelector("form").addEventListener("submit", function(e) {
 
   var text = `Новая заявка:\n\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${email}\nСообщение: ${message}`;
 
-  fetch('api/send-message', {
+  fetch('/api/send-message', {
     method: 'POST',
     headers: {  
       'Content-Type': 'application/json',
