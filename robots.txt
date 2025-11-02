@@ -22,7 +22,7 @@ Disallow: /*.config$
 Host: likiti.by
 
 # Подключаем карту сайта (ускоряет переобход)
-Sitemap: https://likiti.by/sitemap.xml
+Sitemap: https://www.likiti.by/index.html
 
 # Игнорируем параметры, не влияющие на контент
 Clean-param: sessionid
