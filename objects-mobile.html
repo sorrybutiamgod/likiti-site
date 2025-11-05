@@ -395,7 +395,7 @@ filter: brightness(1.4);}
   <div style="height: 50px;"></div>
 
   <script>
-    (function(){
+  (function(){
   // Кеш
   const images = Array.from(document.querySelectorAll('.photo-gallery img'));
   const lightbox = document.getElementById('lightbox');
@@ -408,6 +408,7 @@ filter: brightness(1.4);}
   let currentGroup = [];
   let currentIndex = 0;
   let imageCache = {};  // Кэш для полноразмерных изображений
+  let scrollPosition = 0; // Переменная для хранения текущей позиции прокрутки
 
   // Открытие по тапу/click
   images.forEach(img => {
@@ -417,6 +418,9 @@ filter: brightness(1.4);}
   });
 
   function openFrom(img){
+    // Сохраняем текущую позицию прокрутки
+    scrollPosition = window.scrollY || window.pageYOffset;
+
     const group = img.closest('.photo-gallery').dataset.group;
     currentGroup = Array.from(document.querySelectorAll(`.photo-gallery[data-group="${group}"] img`));
     currentIndex = currentGroup.indexOf(img);
@@ -438,8 +442,10 @@ filter: brightness(1.4);}
     lbImg.alt = currentGroup[currentIndex].alt || '';
     lightbox.classList.add('active');
     lightbox.setAttribute('aria-hidden','false');
+    // Запрещаем прокрутку страницы
     document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
+    // Скрыть back button пока открыт lightbox
     backButton.classList.remove('visible');
   }
 
@@ -448,6 +454,10 @@ filter: brightness(1.4);}
     lightbox.setAttribute('aria-hidden','true');
     document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
+    
+    // Восстанавливаем прокрутку на прежнее место
+    window.scrollTo(0, scrollPosition);
+
     requestAnimationFrame(() => backButton.classList.add('visible'));
   }
 
@@ -517,6 +527,7 @@ filter: brightness(1.4);}
   })([btnPrev, btnNext, btnClose]);
 
 })();
+
 
   </script>
 </body>
