@@ -1,0 +1,24 @@
+{
+  "rewrites": [
+    {
+      "source": "/main",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/main-mobile",
+      "destination": "/likiti-mobile.html"
+    },
+    {
+      "source": "/objects",
+      "destination": "/objects.html"
+    },
+    {
+      "source": "/objects-mobile",
+      "destination": "/objects-mobile.html"
+    },
+    {
+      "source": "/zayavka",
+      "destination": "/zayavka.html"
+    }
+  ]
+}
