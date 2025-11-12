@@ -287,6 +287,7 @@
     /* === ФОРМА ЗАЯВКИ === */
  /* Фон формы заявки */
 /* Фон формы заявки */
+/* Фон формы заявки */
 .request {
   background: url("https://res.cloudinary.com/doesdthrd/image/upload/w_2200,h_2933,f_auto,q_auto/v1761778511/jpeg-optimizer_11_zlmyzp.jpg") center/cover no-repeat;
   color: whitesmoke;
@@ -297,7 +298,7 @@
   background-size: cover; /* Масштабируем фон */
   background-position: center; /* Центрируем изображение */
   background-attachment: scroll; /* Убираем фиксированный фон для мобильных устройств */
-  height: auto; /* Подстраиваем высоту под контент */
+  height: auto;
 }
 
 /* Псевдоэлемент для затемнения */
@@ -329,6 +330,18 @@
   z-index: 2;
 }
 
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+  .request {
+    background: url("https://res.cloudinary.com/doesdthrd/image/upload/w_1400,h_1867,f_auto,q_auto/v1761778511/jpeg-optimizer_11_zlmyzp.jpg") center/contain no-repeat; /* Уменьшаем изображение */
+    background-size: contain; /* Масштабируем изображение так, чтобы оно полностью помещалось */
+    background-position: center;
+    background-attachment: scroll; /* Убираем фиксированное положение фона */
+    padding: 20px 10px; /* Уменьшаем отступы для мобильных */
+  }
+}
+
+
 /* Формы и кнопки */
 form {
   position: relative;
@@ -339,16 +352,6 @@ form {
   align-items: center;
   max-width: 400px;
   margin: 0 auto;
-}
-
-/* Для мобильных устройств */
-@media (max-width: 768px) {
-  .request {
-    background-size: cover;
-    background-position: center;
-    background-attachment: scroll; /* отключаем фиксированный фон */
-    padding: 20px 10px;
-  }
 }
 
 
