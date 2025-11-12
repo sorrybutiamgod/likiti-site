@@ -11,8 +11,8 @@
         window.location.href = "main-mobile";
       }
     } else {
-      if (!window.location.href.includes("main")) {
-        window.location.href = "main";
+      if (!window.location.href.includes("index.html")) {
+        window.location.href = "index.html";
       }
     }
   }
@@ -297,6 +297,16 @@
   background-position: center; /* Центрируем изображение */
   background-attachment: fixed; /* Закрепляем фон при прокрутке страницы */
 }
+
+/* Мобильная версия: корректируем фон */
+@media (max-width: 768px) {
+  .request {
+    background-size: cover; /* Масштабируем изображение */
+    background-position: center center; /* Центрируем изображение */
+    background-attachment: scroll; /* Отключаем фиксированный фон на мобильных */
+  }
+}
+
 
 .request::before {
   content: "";
