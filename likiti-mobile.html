@@ -7,12 +7,12 @@
 <script>
   function checkScreenSize() {
     if (window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-      if (!window.location.href.includes("likiti-mobile.html")) {
-        window.location.href = "likiti-mobile.html";
+      if (!window.location.href.includes("main-mobile")) {
+        window.location.href = "main-mobile";
       }
     } else {
-      if (!window.location.href.includes("index.html")) {
-        window.location.href = "index.html";
+      if (!window.location.href.includes("main")) {
+        window.location.href = "main";
       }
     }
   }
@@ -285,16 +285,20 @@
     }
 
     /* === ФОРМА ЗАЯВКИ === */
-    .request {
-      background: url("https://res.cloudinary.com/doesdthrd/image/upload/w_2200,h_2933,f_auto,q_auto/v1761778511/jpeg-optimizer_11_zlmyzp.jpg") center/cover no-repeat;
-      color: whitesmoke;
-      padding: 20px;
-      overflow: hidden;
-      text-align: center;
-      position: relative;
-    }
+ /* Фон формы заявки */
+.request {
+  background: url("https://res.cloudinary.com/doesdthrd/image/upload/w_2200,h_2933,f_auto,q_auto/v1761778511/jpeg-optimizer_11_zlmyzp.jpg") center/cover no-repeat;
+  color: whitesmoke;
+  padding: 20px;
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+  background-size: cover; /* Чтобы фон растягивался по всей доступной области */
+  background-position: center; /* Центрируем изображение */
+  background-attachment: fixed; /* Закрепляем фон при прокрутке страницы */
+}
 
-    .request::before {
+.request::before {
   content: "";
   position: absolute;
   top: 0;
@@ -306,21 +310,22 @@
   z-index: 1;
 }
 
-    .request h2 {
-      position: relative;
-      font-size: 35px;
-      color: var(--accent);
-      margin-top: 0px;
-      margin-bottom: 10px;
-      z-index: 2;
-    }
+.request h2 {
+  position: relative;
+  font-size: 35px;
+  color: var(--accent);
+  margin-top: 0px;
+  margin-bottom: 10px;
+  z-index: 2;
+}
 
-    .request p {
-      position: relative;
-      font-size: 20px;
-      margin-bottom: 25px;
-      z-index: 2;
-    }
+.request p {
+  position: relative;
+  font-size: 20px;
+  margin-bottom: 25px;
+  z-index: 2;
+}
+
 
     form {
       position: relative;
@@ -637,7 +642,7 @@ html {
 <nav class="mobile-menu" id="mobileMenu">
   <a href="#tech">Техника</a>
   <a href="#history">О кмпании</a>
-  <a href="objects-mobile.html">Наши объекты</a>
+  <a href="objects-mobile">Наши объекты</a>
   <a href="tel:+375298902167" class="phone-link">+375 (29) 890-21-67</a>
 </nav>
   </header>
@@ -710,7 +715,7 @@ html {
   <section id="request" class="request">
     <h2>Заинтересовало наше предложение ?</h2>
     <p>Оставте заявку и мы свяжемся с вами в течении часа !</p>
-    <form action="zayavka.html">
+    <form action="zayavka">
   <input type="text" name = "name" placeholder="Введите ваше имя" required />
   <input type="tel" name = "phone" placeholder="Введите номер телефона" required />
   <input type="email" name = "email" placeholder="Введите email" required />
@@ -896,7 +901,7 @@ document.querySelector("form").addEventListener("submit", function(e) {
   .then(response => response.json())
   .then(data => {
     if (data.message === "Заявка отправлена!") {
-      window.location.href = "zayavka.html"; // Перенаправление на страницу
+      window.location.href = "zayavka"; // Перенаправление на страницу
     } else {
       alert("Ошибка отправки заявки.");
     }
