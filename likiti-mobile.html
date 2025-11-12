@@ -289,17 +289,19 @@
 /* Фон формы заявки */
 /* Фон формы заявки */
 .request {
-  background: url("https://res.cloudinary.com/doesdthrd/image/upload/w_1200,h_1600,f_auto,q_auto/v1761778511/jpeg-optimizer_11_zlmyzp.jpg") center/cover no-repeat;
-  color: whitesmoke;
-  padding: 20px;
-  overflow: hidden;
-  text-align: center;
   position: relative;
-  height: 100vh;
-  background: url("https://res.cloudinary.com/doesdthrd/image/upload/w_1200,h_1600,f_auto,q_auto/v1761778511/jpeg-optimizer_11_zlmyzp.jpg") center/contain no-repeat; /* Уменьшаем изображение */
-  background-size: contain; /* Масштабируем изображение так, чтобы оно полностью помещалось */
+  z-index: 1;
+  background-image: url("https://res.cloudinary.com/doesdthrd/image/upload/w_2500,h_1111,f_auto,q_auto/v1761777591/jpeg-optimizer_3_ke4xrf.jpg");
+  background-size: cover;
   background-position: center;
-  padding: 20px 10px; /* Уменьшаем отступы для мобильных */
+  background-attachment: fixed;
+  padding: 80px 20px;
+  color: white;
+  overflow: hidden;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Псевдоэлемент для затемнения */
