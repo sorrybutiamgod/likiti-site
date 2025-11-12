@@ -1,24 +1,29 @@
 {
-  "rewrites": [
+  "redirects": [
     {
       "source": "/main",
-      "destination": "/index.html"
+      "destination": "/index.html",
+      "permanent": true
     },
     {
       "source": "/main-mobile",
-      "destination": "/likiti-mobile.html"
+      "destination": "/likiti-mobile.html",
+      "permanent": true
     },
     {
       "source": "/objects",
-      "destination": "/objects.html"
+      "destination": "/objects.html",
+      "permanent": true
     },
     {
       "source": "/objects-mobile",
-      "destination": "/objects-mobile.html"
+      "destination": "/objects-mobile.html",
+      "permanent": true
     },
     {
       "source": "/zayavka",
-      "destination": "/zayavka.html"
+      "destination": "/zayavka.html",
+      "permanent": true
     }
   ]
 }
