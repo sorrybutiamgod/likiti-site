@@ -1,4 +1,3 @@
-
 User-agent: *
 # Разрешаем обход всех страниц
 Allow: /
@@ -22,7 +21,7 @@ Disallow: /*.config$
 Host: likiti.by
 
 # Подключаем карту сайта (ускоряет переобход)
-Sitemap: https://www.likiti.by/index.html
+Sitemap: https://www.likiti.by/sitemap.xml
 
 # Игнорируем параметры, не влияющие на контент
 Clean-param: sessionid
@@ -36,20 +35,23 @@ Clean-param: ref
 User-agent: Googlebot
 Allow: /
 Disallow: /test/
+Disallow: /magazin/
 
 # Yandex
 User-agent: Yandex
 Allow: /
 Disallow: /test/
+Disallow: /magazin/
 # Crawl-delay убран, чтобы робот индексировал чаще
 
 # Bingbot
 User-agent: Bingbot
 Allow: /
 Disallow: /test/
+Disallow: /magazin/
 
 # DuckDuckBot
 User-agent: DuckDuckBot
 Allow: /
 Disallow: /test/
-
+Disallow: /magazin/
