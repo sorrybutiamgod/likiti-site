@@ -4,10 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
-  if (window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-    window.location.href = "likiti-mobile.html";
+  function checkScreenSize() {
+    if (window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      if (!window.location.href.includes("likiti-mobile.html")) {
+        window.location.href = "likiti-mobile.html";
+      }
+    } else {
+      if (!window.location.href.includes("index.html")) {
+        window.location.href = "index.html";
+      }
+    }
   }
+
+  // Проверка при загрузке страницы
+  checkScreenSize();
+
+  // Проверка при изменении размера окна
+  window.addEventListener('resize', checkScreenSize);
 </script>
+
 
   <title>Аренда спецтехники | LiKiTi</title>
   <meta name="description" content="Аренда спецтехники в Беларуси • экскаватор-погрузчик • мини-экскаватор • самосвалы • и другая техника">

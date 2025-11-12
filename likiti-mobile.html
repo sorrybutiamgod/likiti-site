@@ -3,6 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<script>
+  function checkScreenSize() {
+    if (window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      if (!window.location.href.includes("likiti-mobile.html")) {
+        window.location.href = "likiti-mobile.html";
+      }
+    } else {
+      if (!window.location.href.includes("index.html")) {
+        window.location.href = "index.html";
+      }
+    }
+  }
+
+  // Проверка при загрузке страницы
+  checkScreenSize();
+
+  // Проверка при изменении размера окна
+  window.addEventListener('resize', checkScreenSize);
+</script>
+
+
   <title>Аренда спецтехники | LiKiTi</title>
   <meta name="description" content="Аренда спецтехники в Беларуси • экскаватор-погрузчик • мини-экскаватор • самосвалы • и другая техника">
   <meta name="keywords" content="аренда спецтехники, экскаватор-погрузчик, мини-экскаватор, самосвал, Полоцк, Новополоцк,Витебская область, спецтехника, аренда, экскаватор, мини-экскаватор, самосвал, погрузчик, строительная, техника, строительство, LiKiTi, аренда техники">
